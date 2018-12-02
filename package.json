@@ -1,0 +1,42 @@
+{
+  "name": "@kev_nz/create",
+  "version": "0.0.1",
+  "description": "Create an full app my way",
+  "main": "index.js",
+  "bin": {
+    "create": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Kevnz/create.git"
+  },
+  "keywords": [
+    "initializer",
+    "hapi",
+    "react",
+    "webpack",
+    "setup"
+  ],
+  "author": "Kevin Isom <kevin.isom@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kevnz/create/issues"
+  },
+  "homepage": "https://github.com/Kevnz/create#readme",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "fs-extra": "^7.0.1",
+    "initit": "^1.0.0-2",
+    "meow": "^5.0.0",
+    "npm-programmatic": "0.0.11",
+    "ora": "^3.0.0",
+    "validate-npm-package-name": "^3.0.0"
+  },
+  "devDependencies": {
+    "@kev_nz/eslint-config": "^3.0.1",
+    "eslint": "^5.9.0"
+  }
+}

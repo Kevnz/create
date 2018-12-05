@@ -3,11 +3,17 @@
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
+const exec = require('child_process').exec
+const asciify = require('asciify')
 const meow = require('meow')
 const chalk = require('chalk')
 const initit = require('initit')
 const npm = require('npm-programmatic')
-const logo = chalk.magenta('[Create an App]')
+const rimraf = require('rimraf')
+const logo = chalk.blue('[Create an App]')
+const ora = require('ora')
+
+let spinner
 const log = (...args) => {
   console.log(logo, ...args)
 }
@@ -55,6 +61,25 @@ console.log({
   appName,
 })
 
+const storybook = () =>
+  new Promise((resolve, reject) => {
+    spinner.text = 'installing storybook'
+    exec(
+      'npx -p @storybook/cli sb init',
+      {
+        cwd: root,
+        maxBuffer: 200 * 1024,
+      },
+      (error, stdout, stderr) => {
+        if (error) {
+          reject(error)
+        } else {
+          resolve(true)
+        }
+      }
+    )
+  })
+
 const prodDeps = [
   'apollo-boost',
   'apollo-cache-inmemory',
@@ -77,6 +102,7 @@ const prodDeps = [
   'react@next',
   'react-apollo',
   'react-dom@next',
+  'react-form-elements',
   '@reach/router',
   'styled-components',
   'the-platform',
@@ -107,12 +133,28 @@ const devDeps = [
   'webpack-cli',
   'webpack-dev-server',
 ]
-// todo: ensure directory doesn't exist
+const message = text =>
+  new Promise((resolve, reject) => {
+    asciify(text, (err, res) => {
+      if (err) {
+        return reject(err)
+      }
+      console.log(res)
+      return resolve()
+    })
+  })
 
-initit({ name, template })
+message('@kev_nz')
+  .then(() => message('create app'))
   .then(() => {
-    // now create the package and install deps
-
+    spinner = ora('Starting').start()
+  })
+  .then(() => initit({ name, template }))
+  .then(() => {
+    spinner.text = 'building package.json'
+  })
+  .then(() => {
+    console.log('built package.json')
     const packageJson = {
       name: name,
       version: '1.0.0',
@@ -136,24 +178,25 @@ initit({ name, template })
       path.join(root, 'package.json'),
       JSON.stringify(packageJson, null, 2) + os.EOL
     )
-
+    spinner.text = 'installing production dependencies'
     return npm.install(prodDeps, {
       cwd: root,
       save: true,
     })
   })
   .then(() => {
+    spinner.text = 'installing dev dependencies'
     return npm.install(devDeps, {
       cwd: root,
       saveDev: true,
     })
   })
-  .then(res => {
-    log('created app')
-    process.exit(0)
+  .then(storybook)
+  .then(() => {
+    spinner.stop()
   })
-  .then(res => {
-    log('created app')
+  .then(() => message('App created'))
+  .then(() => {
     process.exit(0)
   })
   .catch(err => {

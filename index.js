@@ -21,7 +21,7 @@ log.error = (...args) => {
 }
 
 const template = 'Kevnz/app-template/templates/full'
-
+const baseTemplate = 'Kevnz/app-template/templates/base'
 const cli = meow(
   `
   Usage
@@ -30,6 +30,8 @@ const cli = meow(
 
     $ npx @kev_nz/create my-app
 
+    Options
+    --base, -b  Only the server components
 `,
   {
     booleanDefault: undefined,
@@ -42,26 +44,28 @@ const cli = meow(
         type: 'boolean',
         alias: 'v',
       },
+      base: {
+        type: 'boolean',
+        alias: 'b',
+        default: false,
+      },
     },
   }
 )
 
 const [name] = cli.input
+const onlyBase = cli.flags.base
 
 if (!name) {
   cli.showHelp(0)
 }
 
 const root = path.resolve(name)
-const appName = path.basename(root)
-console.log({
-  name,
-  root,
-  appName,
-})
+// const appName = path.basename(root)
 
 const storybook = () =>
   new Promise((resolve, reject) => {
+    if (onlyBase) return resolve(true)
     spinner.text = 'installing storybook'
     exec(
       'npx -p @storybook/cli sb init',
@@ -78,13 +82,7 @@ const storybook = () =>
       }
     )
   })
-
-const prodDeps = [
-  'apollo-boost',
-  'apollo-cache-inmemory',
-  'apollo-client',
-  'apollo-link-context',
-  'apollo-link-http',
+const baseProdDeps = [
   'apollo-server-hapi',
   'hapi',
   'blipp',
@@ -98,17 +96,32 @@ const prodDeps = [
   'graphql',
   'jsonwebtoken',
   'knex',
-  'mini.css',
   'pg',
-  'react@next',
+  'xtconf',
+  'bcrypt',
+]
+
+const prodDeps = [
+  'apollo-boost',
+  'apollo-cache-inmemory',
+  'apollo-client',
+  'apollo-link-context',
+  'apollo-link-http',
+  'react',
   'react-apollo',
-  'react-dom@next',
+  'react-dom',
   'react-form-elements',
   '@reach/router',
   'styled-components',
   'the-platform',
-  'xtconf',
-  'bcrypt',
+].concat(baseProdDeps)
+
+const baseDevDeps = [
+  'eslint',
+  '@kev_nz/eslint-config',
+  'jest',
+  'nodemon',
+  'typesetter',
 ]
 
 const devDeps = [
@@ -122,20 +135,15 @@ const devDeps = [
   'babel-jest',
   'babel-plugin-styled-components',
   'css-loader',
-  'eslint',
-  '@kev_nz/eslint-config',
   'html-webpack-plugin',
-  'jest',
-  'nodemon',
   'npm-run-all',
   'react-hot-loader',
   'react-testing-library',
   'style-loader',
-  'typesetter',
   'webpack',
   'webpack-cli',
   'webpack-dev-server',
-]
+].concat(baseDevDeps)
 
 const message = text =>
   new Promise((resolve, reject) => {
@@ -153,53 +161,60 @@ message('@kev_nz')
   .then(() => {
     spinner = ora('Starting').start()
   })
-  .then(() => initit({ name, template }))
+  .then(() => initit({ name, template: onlyBase ? baseTemplate : template }))
   .then(() => {
     spinner.text = 'building package.json'
   })
   .then(() => {
-    console.log('built package.json')
+    console.info('built package.json')
+    const baseScripts = {
+      'docker:up': 'docker-compose -f ./docker/dev/docker-compose.yml up',
+      'docker:down': 'docker-compose -f ./docker/dev/docker-compose.yml down',
+      'dev:db': 'npm run docker:up',
+      'dev:server': 'nodemon ./src/server/index.js',
+      test:
+        "jest --config=jest.config.js --detectOpenHandles --forceExit --testPathPattern='(src).*(__tests__).*.test.js'",
+      lint: 'eslint ./src',
+      watch: 'npm-run-all --parallel dev:**',
+      'migrate:up': 'knex migrate:latest',
+      'migrate:down': 'knex migrate:rollback',
+      'migrate:create': 'typesetter migrate',
+      model: 'typesetter model',
+    }
+    const fullScripts = {
+      build: 'webpack --config ./src/webpack/prod.config.js --mode production',
+      'dev:ui':
+        'webpack-dev-server --config ./src/webpack/dev.config.js --mode development',
+      model: 'typesetter model',
+      ...baseScripts,
+    }
     const packageJson = {
       name: name,
       version: '1.0.0',
       private: true,
-      scripts: {
-        'docker:up': 'docker-compose -f ./docker/dev/docker-compose.yml up',
-        'docker:down': 'docker-compose -f ./docker/dev/docker-compose.yml down',
-        build:
-          'webpack --config ./src/webpack/prod.config.js --mode production',
-        'dev:db': 'npm run docker:up',
-        'dev:server': 'nodemon ./src/server/index.js',
-        'dev:ui':
-          'webpack-dev-server --config ./src/webpack/dev.config.js --mode development',
-        test:
-          "jest --config=jest.config.js --detectOpenHandles --forceExit --testPathPattern='(src).*(__tests__).*.test.js'",
-        lint: 'eslint ./src',
-        watch: 'npm-run-all --parallel dev:**',
-        'migrate:up': 'knex migrate:latest',
-        'migrate:down': 'knex migrate:rollback',
-        'migrate:create': 'typesetter migrate',
-        model: 'typesetter model',
-      },
+      scripts: onlyBase ? baseScripts : fullScripts,
     }
     fs.writeFileSync(
       path.join(root, 'package.json'),
       JSON.stringify(packageJson, null, 2) + os.EOL
     )
     spinner.text = 'installing production dependencies'
-    return npm.install(prodDeps, {
+    return npm.install(onlyBase ? baseProdDeps : prodDeps, {
       cwd: root,
       save: true,
     })
   })
   .then(() => {
     spinner.text = 'installing dev dependencies'
-    return npm.install(devDeps, {
+    return npm.install(onlyBase ? baseDevDeps : devDeps, {
       cwd: root,
       saveDev: true,
     })
   })
   .then(storybook)
+  .then(() => {
+    // remove directory
+  })
   .then(() => {
     spinner.stop()
   })

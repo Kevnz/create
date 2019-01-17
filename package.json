@@ -1,6 +1,6 @@
 {
   "name": "@kev_nz/create",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Create an full stack app with Hapi, GraphQL, and React",
   "main": "index.js",
   "bin": {

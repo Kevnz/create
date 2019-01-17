@@ -7,4 +7,8 @@ This creates a fullstack app using Hapi on the backend and React on the front en
 ```
 npm init @kev_nz myapp
 ```
+### Base web server app
 
+```
+npm init @kev_nz myapp -b
+```

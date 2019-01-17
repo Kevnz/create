@@ -9,7 +9,6 @@ const meow = require('meow')
 const chalk = require('chalk')
 const initit = require('initit')
 const npm = require('npm-programmatic')
-const rimraf = require('rimraf')
 const logo = chalk.blue('[Create an App]')
 const ora = require('ora')
 
@@ -89,6 +88,7 @@ const prodDeps = [
   'apollo-server-hapi',
   'hapi',
   'blipp',
+  'bookshelf',
   'vision',
   'inert',
   'good',
@@ -96,6 +96,7 @@ const prodDeps = [
   'hapi-cors-headers',
   'hapi-router',
   'graphql',
+  'jsonwebtoken',
   'knex',
   'mini.css',
   'pg',
@@ -107,6 +108,7 @@ const prodDeps = [
   'styled-components',
   'the-platform',
   'xtconf',
+  'bcrypt',
 ]
 
 const devDeps = [
@@ -129,10 +131,12 @@ const devDeps = [
   'react-hot-loader',
   'react-testing-library',
   'style-loader',
+  'typesetter',
   'webpack',
   'webpack-cli',
   'webpack-dev-server',
 ]
+
 const message = text =>
   new Promise((resolve, reject) => {
     asciify(text, (err, res) => {
@@ -172,6 +176,10 @@ message('@kev_nz')
           "jest --config=jest.config.js --detectOpenHandles --forceExit --testPathPattern='(src).*(__tests__).*.test.js'",
         lint: 'eslint ./src',
         watch: 'npm-run-all --parallel dev:**',
+        'migrate:up': 'knex migrate:latest',
+        'migrate:down': 'knex migrate:rollback',
+        'migrate:create': 'typesetter migrate',
+        model: 'typesetter model',
       },
     }
     fs.writeFileSync(

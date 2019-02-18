@@ -4,7 +4,8 @@
   "description": "Create an full stack app with Hapi, GraphQL, and React",
   "main": "index.js",
   "bin": {
-    "create": "index.js"
+    "create": "index.js",
+    "create-ui": "ui.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@kev_nz/eslint-config": "^3.0.1",
+    "@kev_nz/publisher": "^1.0.1",
     "eslint": "^5.9.0"
   }
 }

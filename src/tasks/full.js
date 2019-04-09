@@ -34,7 +34,12 @@ module.exports = (name, root) =>
         name: name,
         version: '1.0.0',
         private: true,
-        scripts: { ...scripts.dev, ...scripts.ui },
+        scripts: {
+          ...scripts.dev,
+          ...scripts.ui,
+          ...scripts.docker,
+          ...scripts.server,
+        },
       }
       fs.writeFileSync(
         path.join(root, 'package.json'),

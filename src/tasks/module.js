@@ -39,13 +39,6 @@ module.exports = (name, root) =>
         path.join(root, 'package.json'),
         JSON.stringify(packageJson, null, 2) + os.EOL
       )
-      spinner.text = 'installing production dependencies'
-      return npm.install(dependencies.dependencies, {
-        cwd: root,
-        save: true,
-      })
-    })
-    .then(() => {
       spinner.text = 'installing dev dependencies'
       return npm.install(
         baseDependencies.devDependencies.concat(dependencies.devDependencies),

@@ -6,6 +6,7 @@ const deck = require('./tasks/deck')
 const mod = require('./tasks/module')
 const ui = require('./tasks/frontend')
 const full = require('./tasks/full')
+const server = require('./tasks/server')
 
 const cli = meow(
   `
@@ -20,6 +21,7 @@ const cli = meow(
   Options
     --deck, -d  Create a slidedeck
     --module, -m Setup an module
+    --server, -s Setup a server only
     --web, -w Setup a front-end only
 `,
   {
@@ -43,6 +45,11 @@ const cli = meow(
         alias: 'm',
         default: false,
       },
+      server: {
+        type: 'boolean',
+        alias: 's',
+        default: false,
+      },
       web: {
         type: 'boolean',
         alias: 'w',
@@ -56,6 +63,7 @@ const [name] = cli.input
 const isDeck = cli.flags.deck
 const isNpmModule = cli.flags.module
 const isWeb = cli.flags.web
+const isServer = cli.flags.server
 
 if (!name) {
   cli.showHelp(0)
@@ -68,6 +76,7 @@ const getTask = () => {
   if (isDeck) return deck
   if (isNpmModule) return mod
   if (isWeb) return ui
+  if (isServer) return server
   return full
 }
 

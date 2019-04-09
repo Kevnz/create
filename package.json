@@ -1,6 +1,6 @@
 {
   "name": "@kev_nz/create",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Create an differnt types of apps, from modules, MDX slide deck, React based front ends and hapi.js backends with GraphQL",
   "main": "index.js",
   "bin": {

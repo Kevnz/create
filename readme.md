@@ -38,7 +38,7 @@ npm init @kev_nz my-slides -d
 npm init @kev_nz my-slides --deck
 ```
 
-## Parts
+## Application Types
 
 ### Back-End
 
@@ -50,3 +50,4 @@ React.JS, and Webpack
 
 ### Module
 
+Base module setup with Jest, coveralls, and @kev_nz/publisher installed.

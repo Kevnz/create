@@ -2,23 +2,54 @@
 <html lang="en">
 
 <head>
-  <title>@kev_nz/create</title>
+  <title>@kev_nz/create - Create an different types of apps, from modules, MDX slide deck, React based front ends and hapi.js backends with GraphQL - Kevin Isom</title>
   <link rel="stylesheet" type="text/css" href="styles.css" />
-  <meta name="description" content="Create an full stack app with Hapi, GraphQL, and React" />
+  <link rel="stylesheet" type="text/css" href="extend.css" />
+  <meta name="description" content="@kev_nz/create - Create an different types of apps, from modules, MDX slide deck, React based front ends and hapi.js backends with GraphQL -" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="@kev_nz/create - Create an different types of apps, from modules, MDX slide deck, React based front ends and hapi.js backends with GraphQL - - Kevin Isom" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="@kev_nz/create - Create an different types of apps, from modules, MDX slide deck, React based front ends and hapi.js backends with GraphQL -" />
+  <meta property="og:url" content="https://kevinisom.info/create" />
+  <meta property="og:image" content="https://avatars3.githubusercontent.com/u/62547?s=400&amp;v=4" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@kev_nz" />
+  <meta name="twitter:title" content="@kev_nz/create - Create an different types of apps, from modules, MDX slide deck, React based front ends and hapi.js backends with GraphQL -- Kevin Isom" />
+  <meta name="twitter:description" content="@kev_nz/create - Create an different types of apps, from modules, MDX slide deck, React based front ends and hapi.js backends with GraphQL -" />
+  <meta name="twitter:image" content="https://avatars3.githubusercontent.com/u/62547?s=400&amp;v=4" />
+
 </head>
 
 <body>
   <div class="container">
-  <h1 id="createanapp">Create an app</h1>
+  <h1 id="create-different-types-of-apps">Create different types of apps</h1>
 <p><a href="https://badge.fury.io/js/%40kev_nz%2Fcreate"><img src="https://badge.fury.io/js/%40kev_nz%2Fcreate.svg" alt="npm version" /></a></p>
-<p>This creates a fullstack app using Hapi on the backend and React on the front end. This setup is my current stack that I feel makes me super productive. It creates a Hapi based API and GraphQL server, a React based front end and uses Webpack to build the assets. For the database access it has an included Docker Compose file that includes PostgresSQL, MongoDB, Redis and Neo4j.</p>
+<p>This creates various apps. It can createa fullstack app with a Hapi based API and GraphQL server, a React based front end and Webpack to build the assets. It can also create just the back-end or just the front-end. Additionally it can create a base setup for writing modules and a MDX-Deck slide deck for creating a presentation.</p>
 <h2 id="usage">Usage</h2>
-<pre><code>npm init @kev_nz myapp
-</code></pre>
-<h3 id="basewebserverapp">Base web server app</h3>
-<pre><code>npm init @kev_nz myapp -b
-</code></pre>
+<pre><code class="hljs"><span class="hljs-built_in">npm</span> init @kev_nz myapp</code></pre>
+<h3 id="a-module">A module</h3>
+<pre><code class="hljs"><span class="hljs-built_in">npm</span> init @kev_nz my-<span class="hljs-built_in">module</span> -m
+<span class="hljs-built_in">npm</span> init @kev_nz my-<span class="hljs-built_in">module</span> --<span class="hljs-built_in">module</span></code></pre>
+<h3 id="a-reactjs-front-end">A React.JS Front-End</h3>
+<pre><code class="hljs"><span class="hljs-built_in">npm</span> init @kev_nz web-app -w
+<span class="hljs-built_in">npm</span> init @kev_nz web-app --web</code></pre>
+<h3 id="a-hapijs-back-end">A Hapi.js Back-End</h3>
+<pre><code class="hljs"><span class="hljs-built_in">npm</span> init @kev_nz web-server -s
+<span class="hljs-built_in">npm</span> init @kev_nz web-server --server</code></pre>
+<h3 id="mdx-deck-slide-deck">MDX-Deck Slide Deck</h3>
+<pre><code class="hljs"><span class="hljs-built_in">npm</span> init @kev_nz my-slides -d
+<span class="hljs-built_in">npm</span> init @kev_nz my-slides --deck</code></pre>
+<h2 id="parts">Parts</h2>
+<h3 id="back-end">Back-End</h3>
+<p>For the database access it has an included Docker Compose file that includes PostgresSQL, MongoDB, Redis and Neo4j.</p>
+<h3 id="front-end">Front-End</h3>
+<p>React.JS, and Webpack</p>
+<h3 id="module">Module</h3>
   </div>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64038939-2"></script>
 <script>

@@ -15,7 +15,7 @@ const logger = require('../logger')
 const storybook = require('./storybook')
 let spinner
 
-const template = 'Kevnz/app-template/templates/ui'
+const template = 'Kevnz/app-template/templates/full'
 
 module.exports = (name, root) =>
   message('@kev_nz')

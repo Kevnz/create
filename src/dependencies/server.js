@@ -1,0 +1,21 @@
+module.exports = {
+  dependencies: [
+    'apollo-server-hapi',
+    'hapi',
+    'blipp',
+    'bookshelf',
+    'vision',
+    'inert',
+    'good',
+    'good-console',
+    'hapi-cors-headers',
+    'hapi-router',
+    'graphql',
+    'jsonwebtoken',
+    'knex',
+    'pg',
+    'xtconf',
+    'bcrypt',
+  ],
+  devDependencies: ['nodemon', 'npm-run-all', 'typesetter'],
+}

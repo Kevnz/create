@@ -1,11 +1,10 @@
 {
   "name": "@kev_nz/create",
-  "version": "0.0.6",
-  "description": "Create an full stack app with Hapi, GraphQL, and React",
+  "version": "0.3.1",
+  "description": "Create an different types of apps, from modules, MDX slide deck, React based front ends and hapi.js backends with GraphQL",
   "main": "index.js",
   "bin": {
-    "create": "index.js",
-    "create-ui": "ui.js"
+    "create": "./src/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +18,9 @@
     "hapi",
     "react",
     "webpack",
+    "mdx",
+    "mdx-deck",
+    "modules",
     "setup"
   ],
   "author": "Kevin Isom <kevin.isom@gmail.com>",

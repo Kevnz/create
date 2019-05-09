@@ -7,7 +7,8 @@
     "create": "./src/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postversion": "npm publish --access=public",
+    "postpublish": "git push origin --all --follow-tags && npx publisher"
   },
   "repository": {
     "type": "git",

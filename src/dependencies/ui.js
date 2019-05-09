@@ -1,17 +1,10 @@
 module.exports = {
   dependencies: [
-    'apollo-boost',
-    'apollo-cache-inmemory',
-    'apollo-client',
-    'apollo-link-context',
-    'apollo-link-http',
     'react',
-    'react-apollo',
     'react-dom',
     'react-form-elements',
     '@reach/router',
-    'styled-components',
-    'the-platform',
+    '@brightleaf/react-hooks',
   ],
   devDependencies: [
     '@babel/core',
@@ -22,7 +15,7 @@ module.exports = {
     'babel-eslint',
     'babel-loader',
     'babel-jest',
-    'babel-plugin-styled-components',
+    'copy-webpack-plugin',
     'css-loader',
     'html-webpack-plugin',
     'react-hot-loader',

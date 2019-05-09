@@ -16,5 +16,5 @@ module.exports = {
     'xtconf',
     'bcrypt',
   ],
-  devDependencies: ['nodemon', 'npm-run-all', 'typesetter'],
+  devDependencies: ['nodemon', 'typesetter'],
 }

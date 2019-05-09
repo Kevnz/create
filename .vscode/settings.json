@@ -6,7 +6,16 @@
   },
   "workbench.colorCustomizations": {
     "titleBar.activeBackground": "#209cf0",
-    "titleBar.inactiveBackground": "#165681cc"
+    "titleBar.inactiveBackground": "#209cf0cc",
+    "titleBar.activeForeground": "#ffffff",
+    "titleBar.inactiveForeground": "#FFFFFFCC",
+    "titleBar.border": "#33373f",
+    "activityBar.foreground": "#209cf0",
+    "activityBar.background": "#33373f",
+    "activityBarBadge.foreground": "#fff",
+    "tab.activeBorder": "#209cf0",
+    "tab.activeBorderTop": "#209cf0",
+    "tab.activeBackground": "#42464d"
   },
   "vsicons.presets.jsOfficial": true,
   "vsicons.presets.jsonOfficial": true,
@@ -61,5 +70,4 @@
       "format": "svg"
     }
   ]
-}
 }

@@ -18,15 +18,14 @@ const database = {
 }
 
 const dev = {
-  test: 'jest --config=jest.config.js --detectOpenHandles --forceExit --watch',
-  lint: 'eslint ./src',
-  watch: 'npm-run-all --parallel dev:**',
+  test: 'isom test',
+  lint: 'isom lint',
+  watch: 'isom watch',
 }
 
 const ui = {
-  build: 'webpack --config ./src/webpack/prod.config.js --mode production',
-  'dev:ui':
-    'webpack-dev-server --config ./src/webpack/dev.config.js --mode development',
+  build: 'isom build',
+  dev: 'isom dev',
 }
 
 const deck = {

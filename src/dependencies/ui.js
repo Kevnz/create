@@ -29,6 +29,7 @@ module.exports = {
     'node-sass',
     'postcss-cli',
     'react-hot-loader',
+    'resolve-url-loader',
     'sass-loader',
     'style-loader',
     'webpack',

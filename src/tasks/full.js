@@ -12,7 +12,7 @@ const UIDependencies = require('../dependencies/ui')
 const message = require('../message')
 const scripts = require('../scripts')
 const logger = require('../logger')
-const storybook = require('./storybook')
+
 let spinner
 
 const template = 'Kevnz/app-template/templates/full'
@@ -68,7 +68,7 @@ module.exports = (name, root) =>
         }
       )
     })
-    .then(() => storybook(root, spinner))
+
     .then(() => {
       spinner.stop()
     })

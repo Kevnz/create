@@ -35,6 +35,15 @@ const deck = {
   image: 'mdx-deck screenshot deck.mdx',
   help: 'mdx-deck',
 }
+
+const serverless = {
+  'dev:sls': 'export SLS_DEBUG=* && export IS_OFFLINE=true && sls offline start',
+  'deploy:dev': 'export STAGE=dev && serverless deploy --stage dev',
+  'deploy:test':
+    'export STAGE=qa && export SLS_DEBUG=* && serverless deploy --stage qa',
+  'deploy:prod': 'export STAGE=prod && serverless deploy --stage prod',,
+}
+
 module.exports = {
   docker,
   server,

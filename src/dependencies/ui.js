@@ -22,6 +22,7 @@ module.exports = {
     'babel-loader',
     'babel-jest',
     'bulma',
+    'bulmaswatch',
     'copy-webpack-plugin',
     'cross-env',
     'css-loader',

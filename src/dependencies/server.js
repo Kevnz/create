@@ -1,6 +1,5 @@
 module.exports = {
   dependencies: [
-    'apollo-server-hapi',
     '@hapi/hapi',
     '@hapi/vision',
     '@hapi/inert',
@@ -9,6 +8,7 @@ module.exports = {
     'blipp',
     'bookshelf',
     'hapi-router',
+    'graphi',
     'graphql',
     'jsonwebtoken',
     'knex',

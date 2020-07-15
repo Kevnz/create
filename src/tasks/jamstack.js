@@ -15,7 +15,7 @@ const logger = require('../logger')
 
 let spinner
 
-const template = 'Kevnz/app-template/templates/full'
+const template = 'Kevnz/app-template/templates/jamstack'
 
 module.exports = (name, root) =>
   message('@kev_nz')

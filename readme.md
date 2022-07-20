@@ -13,29 +13,29 @@ npm init @kev_nz myapp
 ### A module
 
 ```
-npm init @kev_nz my-module -m
-npm init @kev_nz my-module --module
+npm init @kev_nz my-module -- -m
+npm init @kev_nz my-module -- --module
 ```
 
 ### A React.JS Front-End
 
 ```
-npm init @kev_nz web-app -w
-npm init @kev_nz web-app --web
+npm init @kev_nz web-app -- -w
+npm init @kev_nz web-app -- --web
 ```
 
 ### A Hapi.js Back-End
 
 ```
-npm init @kev_nz web-server -s
-npm init @kev_nz web-server --server
+npm init @kev_nz web-server -- -s
+npm init @kev_nz web-server -- --server
 ```
 
 ### MDX-Deck Slide Deck
 
 ```
-npm init @kev_nz my-slides -d
-npm init @kev_nz my-slides --deck
+npm init @kev_nz my-slides -- -d
+npm init @kev_nz my-slides -- --deck
 ```
 
 ## Application Types

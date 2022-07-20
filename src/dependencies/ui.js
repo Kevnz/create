@@ -4,7 +4,7 @@ module.exports = {
     'react',
     'react-dom',
     'react-form-elements',
-    '@gatsbyjs/router',
+    '@gatsbyjs/reach-router',
     '@brightleaf/react-hooks',
     '@brightleaf/elements',
   ],

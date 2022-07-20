@@ -76,6 +76,7 @@ const isWeb = cli.flags.web
 const isServer = cli.flags.server
 const isUI = cli.flags.ui
 const isJamStack = cli.flags.jam
+console.log('flags', cli.flags)
 if (!name) {
   cli.showHelp(0)
 }

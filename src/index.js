@@ -68,7 +68,7 @@ const cli = meow(
     },
   }
 )
-
+console.log('cli', cli)
 const [name] = cli.input
 const isDeck = cli.flags.deck
 const isNpmModule = cli.flags.module

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "postversion": "npm publish --access=public",
-    "postpublish": "git push origin --all --follow-tags && npx publisher"
+    "postpublish": "git push origin --all --follow-tags"
   },
   "repository": {
     "type": "git",

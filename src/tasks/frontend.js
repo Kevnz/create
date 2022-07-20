@@ -18,7 +18,7 @@ const template = 'Kevnz/app-template/templates/ui'
 
 module.exports = (name, root) =>
   message('@kev_nz')
-    .then(() => message('create app'))
+    .then(() => message('create UI app'))
     .then(() => {
       spinner = ora('Starting').start()
     })

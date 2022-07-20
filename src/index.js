@@ -60,6 +60,11 @@ const cli = meow(
         alias: 'w',
         default: false,
       },
+      ui: {
+        type: 'boolean',
+        alias: 'ui',
+        default: false,
+      },
     },
   }
 )
@@ -69,6 +74,7 @@ const isDeck = cli.flags.deck
 const isNpmModule = cli.flags.module
 const isWeb = cli.flags.web
 const isServer = cli.flags.server
+const isUI = cli.flags.ui
 const isJamStack = cli.flags.jam
 if (!name) {
   cli.showHelp(0)
@@ -83,7 +89,8 @@ const getTask = () => {
   if (isWeb) return ui
   if (isServer) return server
   if (isJamStack) return jamstack
-
+  if (isUI) return ui
+  console.warn('No stack given')
   return full
 }
 
